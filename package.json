@@ -1,6 +1,6 @@
 {
   "name": "verifier-loop",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Agent skill for Claude Code and Codex: turn a hard-to-check goal into a deterministic verifier, then let an agent loop against it until a measurable target is met",
   "type": "module",
   "bin": {
@@ -26,5 +26,13 @@
     "benchmark",
     "ralph-loop"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kulovema2012/verifier-loop.git"
+  },
+  "homepage": "https://github.com/kulovema2012/verifier-loop#readme",
+  "bugs": {
+    "url": "https://github.com/kulovema2012/verifier-loop/issues"
+  }
 }
