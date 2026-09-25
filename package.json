@@ -1,0 +1,30 @@
+{
+  "name": "verifier-loop",
+  "version": "1.0.0",
+  "description": "Agent skill for Claude Code and Codex: turn a hard-to-check goal into a deterministic verifier, then let an agent loop against it until a measurable target is met",
+  "type": "module",
+  "bin": {
+    "verifier-loop": "verifier-loop.mjs"
+  },
+  "files": [
+    "verifier-loop.mjs",
+    "payload/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "claude-code",
+    "codex",
+    "skill",
+    "agent-skills",
+    "verifier",
+    "agent-loop",
+    "pixel-diff",
+    "benchmark",
+    "ralph-loop"
+  ],
+  "license": "MIT"
+}
