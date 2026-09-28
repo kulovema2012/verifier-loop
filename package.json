@@ -1,6 +1,6 @@
 {
   "name": "verifier-loop",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Agent skill for Claude Code and Codex: turn a hard-to-check goal into a deterministic verifier, then let an agent loop against it until a measurable target is met",
   "type": "module",
   "bin": {
