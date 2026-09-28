@@ -54,10 +54,17 @@ function legacyCodexCopies() {
   const homes = SCOPE === 'project'
     ? [path.join(ROOT, '.codex')]
     : [path.join(HOME, '.codex'), codexHome].filter(Boolean);
+  // Two homes can share one skills folder (Orca links its skills folder to ~/.codex/skills), so compare by the
+  // resolved folder, not the path as written.
   const seen = new Set();
   return homes
     .map((h) => path.join(path.resolve(h), 'skills', NAME))
-    .filter((d) => !seen.has(d.toLowerCase()) && seen.add(d.toLowerCase()) && exists(d));
+    .filter((d) => {
+      const key = path.join(realpathOrNull(path.dirname(d)) ?? path.dirname(d).toLowerCase(), NAME).toLowerCase();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return exists(d);
+    });
 }
 
 // Skills added to a claude.ai account are synced into ~/.claude/skills/synced/<account>/<name>. Claude Code loads
@@ -185,6 +192,7 @@ function install() {
     console.log(`  ${DRY ? 'would install' : 'installed'}`);
   }
   for (const d of legacyCodexCopies()) {
+    if (!exists(d)) continue; // already removed through another path
     if (KEEP_LEGACY) {
       console.log(`! old Codex copy left in place (--keep-legacy): ${d}`);
       continue;
@@ -235,6 +243,7 @@ function uninstall() {
   }
   if (!KEEP_LEGACY) {
     for (const d of legacyCodexCopies()) {
+      if (!exists(d)) continue;
       console.log(`- Old Codex copy: ${d}`);
       backup(d);
     }
